@@ -1,9 +1,18 @@
-from bs4 import BeautifulSoup as bs
-import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
+import time
 import pandas as pd
+import requests
+
 
 # URL para coleta de dados
 bright_stars_url = 'https://en.wikipedia.org/wiki/List_of_brightest_stars_and_other_record_stars'
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+driver.get(bright_stars_url)
 
 # Obtenha a Página
 page = requests.get(bright_stars_url)
